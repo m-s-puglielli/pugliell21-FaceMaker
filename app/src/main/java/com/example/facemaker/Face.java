@@ -1,3 +1,7 @@
+/**
+ * @author Maximilian Puglielli
+ */
+
 package com.example.facemaker;
 
 import android.graphics.Canvas;
@@ -9,23 +13,32 @@ public class Face
 	private FaceModel model;
 
 
-
+	/**
+	 * This method is Face's constructor.
+	 * @param model
+	 */
 	public Face(FaceModel model)
 	{
 		this.model = model;
 
+		// automatically calls randomize on creation
 		randomize();
 	}
 
+	/**
+	 * This method randomizes the colors of the paints used to draw the hair, eyes, and skin.
+	 */
 	public void randomize()
 	{
 		model.set_hair_paint(gen.nextInt(0x00ffffff));
 		model.set_eye_paint(gen.nextInt(0x00ffffff));
 		model.set_skin_paint(gen.nextInt(0x00ffffff));
-
-
 	}
 
+	/**
+	 * This method actually draws the face.
+	 * @param c
+	 */
 	public void draw(Canvas c)
 	{
 		c.drawOval(100f, 200f, 200f, 300f, model.get_hair_paint());

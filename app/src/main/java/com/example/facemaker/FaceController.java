@@ -20,8 +20,6 @@ public class FaceController implements	View.OnClickListener,
 
 	private RadioGroup radio_group;
 
-	private Attribute selected_attribute = Attribute.HAIR;
-	private Style selected_style = Style.MUSTACHE;
 
 
 	public FaceController(FaceView view, SeekBar red, SeekBar green, SeekBar blue, RadioGroup radio_group)
@@ -42,7 +40,7 @@ public class FaceController implements	View.OnClickListener,
 	{
 		view.get_face().randomize();
 
-		switch(this.selected_attribute)
+		switch(model.get_selected_attribute())
 		{
 			case HAIR:
 				this.onCheckedChanged(radio_group, R.id.RadioButtonHair);
@@ -68,7 +66,7 @@ public class FaceController implements	View.OnClickListener,
 	{
 		if(fromUser)
 		{
-			switch(this.selected_attribute)
+			switch(model.get_selected_attribute())
 			{
 				case HAIR:
 					model.set_hair_paint( FaceModel.compile_color(red.getProgress(), green.getProgress(), blue.getProgress()) );
@@ -94,21 +92,21 @@ public class FaceController implements	View.OnClickListener,
 		switch(checkedId)
 		{
 			case R.id.RadioButtonHair:
-				selected_attribute = Attribute.HAIR;
+				model.set_selected_attribute(Attribute.HAIR);
 				red.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'r') );
 				green.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'g') );
 				blue.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'b') );
 				break;
 
 			case R.id.RadioButtonEyes:
-				selected_attribute = Attribute.EYES;
+				model.set_selected_attribute(Attribute.EYES);
 				red.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'r') );
 				green.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'g') );
 				blue.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'b') );
 				break;
 
 			case R.id.RadioButtonSkin:
-				selected_attribute = Attribute.SKIN;
+				model.set_selected_attribute(Attribute.SKIN);
 				red.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'r') );
 				green.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'g') );
 				blue.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'b') );
@@ -125,15 +123,15 @@ public class FaceController implements	View.OnClickListener,
 		switch(position)
 		{
 			case 0:
-				selected_style = Style.MUSTACHE;
+				model.set_selected_style(Style.MUSTACHE);
 				break;
 
 			case 1:
-				selected_style = Style.SOUL_PATCH;
+				model.set_selected_style(Style.SOUL_PATCH);
 				break;
 
 			case 2:
-				selected_style = Style.GOATEE;
+				model.set_selected_style(Style.GOATEE);
 				break;
 
 			default:
