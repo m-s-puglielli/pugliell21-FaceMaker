@@ -8,21 +8,22 @@ import android.view.SurfaceView;
 public class FaceView extends SurfaceView
 {
 	private Face face;
+	private FaceModel model;
 
 	public FaceView(Context c, AttributeSet as)
 	{
 		super(c, as);
 		setWillNotDraw(false);
 
-		face = new Face();
+		this.model = new FaceModel();
+		this.face = new Face(model);
 	}
 
 	public void onDraw(Canvas c)
 	{
 		face.draw(c);
-
-		this.invalidate();
 	}
 
 	public Face get_face() { return this.face; }
+	public FaceModel get_face_model() { return this.model; }
 }

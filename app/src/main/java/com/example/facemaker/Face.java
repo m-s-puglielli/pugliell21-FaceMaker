@@ -17,12 +17,14 @@ public class Face
 
 	private int hair_style;
 
-	private FaceModel model = new FaceModel();
+	private FaceModel model;
 
 
 
-	public Face()
+	public Face(FaceModel model)
 	{
+		this.model = model;
+
 		this.skin_paint = new Paint();
 		this.eye_paint = new Paint();
 		this.hair_paint = new Paint();
@@ -49,8 +51,8 @@ public class Face
 
 	public void draw(Canvas c)
 	{
-//		c.drawOval(model.x_pos, model.y_pos, model.x_pos + 100, model.y_pos + 100);
+		model.x_pos = (float) gen.nextInt(300) + 200;
+		model.y_pos = (float) gen.nextInt(300) + 200;
+		c.drawOval(model.x_pos, model.y_pos, model.x_pos + 100.0f, model.y_pos + 100.0f, skin_paint);
 	}
-
-	public FaceModel get_face_model() { return this.model; }
 }

@@ -1,26 +1,20 @@
 package com.example.facemaker;
 
-import android.view.MotionEvent;
 import android.view.View;
 
-public class FaceController implements View.OnTouchListener
+public class FaceController implements View.OnClickListener
 {
-	private FaceView face;
-	private FaceModel model;
+	private FaceView view;
+	FaceModel model;
 
-	public FaceController(FaceView face)
+	public FaceController(FaceView view)
 	{
-		this.face = face;
-		model = face.get_face().get_face_model();
+		this.view = view;
+		model = view.get_face_model();
 	}
 
-	public boolean onTouch(View v, MotionEvent e)
+	public void onClick(View v)
 	{
-		model.x_pos = e.getX();
-		model.y_pos = e.getY();
-
-		face.invalidate();
-
-		return true;
+		view.invalidate();
 	}
 }
