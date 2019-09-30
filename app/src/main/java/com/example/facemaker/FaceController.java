@@ -29,11 +29,31 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 		this.blue = blue;
 
 		this.radio_group = radio_group;
+
+		this.onClick(view);
 	}
 
 	public void onClick(View v)
 	{
 		view.get_face().randomize();
+		switch(this.selected_attribute)
+		{
+			case HAIR:
+				this.onCheckedChanged(radio_group, R.id.RadioButtonHair);
+				break;
+
+			case EYES:
+				this.onCheckedChanged(radio_group, R.id.RadioButtonEyes);
+				break;
+
+			case SKIN:
+				this.onCheckedChanged(radio_group, R.id.RadioButtonSkin);
+				break;
+
+			default:
+				Log.d("FaceController.java:52", "ERROR: ENUM selected_attribute CORRUPTED");
+				break;
+		}
 		view.invalidate();
 	}
 
@@ -41,7 +61,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 	{
 		if(fromUser)
 		{
-			switch(selected_attribute)
+			switch(this.selected_attribute)
 			{
 				case HAIR:
 					model.set_hair_paint( FaceModel.compile_color(red.getProgress(), green.getProgress(), blue.getProgress()) );
@@ -53,7 +73,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 					model.set_skin_paint( FaceModel.compile_color(red.getProgress(), green.getProgress(), blue.getProgress()) );
 					break;
 				default:
-					Log.d("FaceController.java:47", "ERROR ENUM selected_attribute CORRUPTED");
+					Log.d("FaceController.java:47", "ERROR: ENUM selected_attribute CORRUPTED");
 					break;
 			}
 			view.invalidate();
@@ -68,18 +88,27 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 		{
 			case R.id.RadioButtonHair:
 				selected_attribute = Attribute.HAIR;
+				red.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'r') );
+				green.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'g') );
+				blue.setProgress( FaceModel.decompile_paint(model.get_hair_paint(), 'b') );
 				break;
 
 			case R.id.RadioButtonEyes:
 				selected_attribute = Attribute.EYES;
+				red.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'r') );
+				green.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'g') );
+				blue.setProgress( FaceModel.decompile_paint(model.get_eye_paint(), 'b') );
 				break;
 
 			case R.id.RadioButtonSkin:
 				selected_attribute = Attribute.SKIN;
+				red.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'r') );
+				green.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'g') );
+				blue.setProgress( FaceModel.decompile_paint(model.get_skin_paint(), 'b') );
 				break;
 
 			default:
-				Log.d("FaceController.java:82", "ERROR R.id checkedId CORRUPTED");
+				Log.d("FaceController.java:82", "ERROR: R.id checkedId CORRUPTED");
 				break;
 		}
 	}

@@ -1,6 +1,7 @@
 package com.example.facemaker;
 
 import android.graphics.Paint;
+import android.util.Log;
 
 public class FaceModel
 {
@@ -31,6 +32,28 @@ public class FaceModel
 		return ( (red * 256 * 256) | (green * 256) | blue );
 	}
 
+	public static int decompile_paint(Paint paint, char rgb)
+	{
+		switch(rgb)
+		{
+			case 'b':
+				return 0xff & paint.getColor();
+
+			case 'g':
+				return 0xff & (paint.getColor() >> 8);
+
+			case 'r':
+				return 0xff & (paint.getColor() >> 16);
+
+			default:
+				Log.d("FaceModel.java:52", "ERROR: MISUSE OF decompile_paint()");
+				return 0;
+		}
+	}
+
+//	public int get_hair_color() { return this.hair_color; }
+//	public int get_eye_color() { return this.eye_color; }
+//	public int get_skin_color() { return this.skin_color; }
 	public Paint get_hair_paint() { return this.hair_paint; }
 	public Paint get_eye_paint() { return this.eye_paint; }
 	public Paint get_skin_paint() { return this.skin_paint; }
