@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity
 		SeekBar SeekBarRed = (SeekBar) findViewById(R.id.SeekBarRed);
 		SeekBar SeekBarGreen = (SeekBar) findViewById(R.id.SeekBarGreen);
 		SeekBar SeekBarBlue = (SeekBar) findViewById(R.id.SeekBarBlue);
-		Spinner SpinnerHairStyle = (Spinner) findViewById(R.id.SpinnerStyles);
+		Spinner SpinnerStyle = (Spinner) findViewById(R.id.SpinnerStyles);
 		RadioGroup RadioGroupAttributes = (RadioGroup) findViewById(R.id.RadioGroupHES);
 
-		ArrayAdapter AdapterHairStyle = ArrayAdapter.createFromResource(this, R.array.styles, android.R.layout.simple_spinner_dropdown_item);
-		AdapterHairStyle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		SpinnerHairStyle.setAdapter(AdapterHairStyle);
+		ArrayAdapter<CharSequence> AdapterStyle = ArrayAdapter.createFromResource(this, R.array.styles, android.R.layout.simple_spinner_dropdown_item);
+		AdapterStyle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		SpinnerStyle.setAdapter(AdapterStyle);
 
 		FaceController controller = new FaceController(SurfaceViewFace, SeekBarRed, SeekBarGreen, SeekBarBlue, RadioGroupAttributes);
 		ButtonRandomize.setOnClickListener(controller);
@@ -36,5 +36,6 @@ public class MainActivity extends AppCompatActivity
 		SeekBarGreen.setOnSeekBarChangeListener(controller);
 		SeekBarBlue.setOnSeekBarChangeListener(controller);
 		RadioGroupAttributes.setOnCheckedChangeListener(controller);
+		SpinnerStyle.setOnItemSelectedListener(controller);
 	}
 }

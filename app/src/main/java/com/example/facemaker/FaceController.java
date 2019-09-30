@@ -2,10 +2,14 @@ package com.example.facemaker;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
-public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener
+public class FaceController implements	View.OnClickListener,
+										SeekBar.OnSeekBarChangeListener,
+										RadioGroup.OnCheckedChangeListener,
+										AdapterView.OnItemSelectedListener
 {
 	private FaceView view;
 	private FaceModel model;
@@ -17,6 +21,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 	private RadioGroup radio_group;
 
 	private Attribute selected_attribute = Attribute.HAIR;
+	private Style selected_style = Style.MUSTACHE;
 
 
 	public FaceController(FaceView view, SeekBar red, SeekBar green, SeekBar blue, RadioGroup radio_group)
@@ -36,6 +41,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 	public void onClick(View v)
 	{
 		view.get_face().randomize();
+
 		switch(this.selected_attribute)
 		{
 			case HAIR:
@@ -54,6 +60,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 				Log.d("FaceController.java:52", "ERROR: ENUM selected_attribute CORRUPTED");
 				break;
 		}
+
 		view.invalidate();
 	}
 
@@ -76,7 +83,7 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 					Log.d("FaceController.java:47", "ERROR: ENUM selected_attribute CORRUPTED");
 					break;
 			}
-			view.invalidate();
+			this.view.invalidate();
 		}
 	}
 	public void onStartTrackingTouch(SeekBar sb) {}
@@ -112,4 +119,27 @@ public class FaceController implements View.OnClickListener, SeekBar.OnSeekBarCh
 				break;
 		}
 	}
+
+	public void onItemSelected(AdapterView parent, View view, int position, long id)
+	{
+		switch(position)
+		{
+			case 0:
+				selected_style = Style.MUSTACHE;
+				break;
+
+			case 1:
+				selected_style = Style.SOUL_PATCH;
+				break;
+
+			case 2:
+				selected_style = Style.GOATEE;
+				break;
+
+			default:
+				Log.d("FaceController.java:140", "ERROR: INVALID ENUM position PASSED TO onItemSelected()");
+		}
+		this.view.invalidate();
+	}
+	public void onNothingSelected(AdapterView parent) {}
 }

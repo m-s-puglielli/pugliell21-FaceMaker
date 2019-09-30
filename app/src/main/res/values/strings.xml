@@ -12,8 +12,8 @@
 	<string name="skin">Skin</string>
 
 	<string-array name="styles">
-		<item></item>
-		<item></item>
-		<item></item>
+		<item>Mustache</item>
+		<item>Soul Patch</item>
+		<item>Goatee</item>
 	</string-array>
 </resources>
