@@ -71,7 +71,7 @@
 		app:layout_constraintTop_toBottomOf="@+id/TextViewBlue" />
 
 	<Spinner
-		android:id="@+id/SpinnerHairStyle"
+		android:id="@+id/SpinnerStyles"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,8 @@
 			android:id="@+id/RadioButtonHair"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/hair" />
+			android:text="@string/hair"
+			android:checked="true" />
 
 		<RadioButton
 			android:id="@+id/RadioButtonEyes"
