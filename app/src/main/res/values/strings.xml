@@ -1,8 +1,16 @@
 <resources>
 	<string name="app_name">FaceMaker</string>
 	<string name="randomize">Randomize</string>
-	<string name="hair_eyes_skin">Hair / Eyes / Skin</string>
 	<string name="red">Red</string>
 	<string name="green">Green</string>
 	<string name="blue">Blue</string>
+	<string name="hair">Hair</string>
+	<string name="eyes">Eyes</string>
+	<string name="skin">Skin</string>
+
+	<string-array name="hair_styles">
+		<item></item>
+		<item></item>
+		<item></item>
+	</string-array>
 </resources>

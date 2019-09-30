@@ -10,7 +10,7 @@
 		android:id="@+id/FaceView"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
-		app:layout_constraintBottom_toTopOf="@+id/GuidelineRow"
+		app:layout_constraintBottom_toTopOf="@+id/ButtonRandomize"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.5"
 		app:layout_constraintStart_toStartOf="parent"
@@ -22,16 +22,15 @@
 		android:layout_height="wrap_content"
 		android:text="@string/red"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="@+id/GuidelineColumn"
-		app:layout_constraintTop_toTopOf="@+id/GuidelineRow" />
+		app:layout_constraintTop_toBottomOf="@+id/FaceView" />
 
 	<SeekBar
 		android:id="@+id/SeekBarRed"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:max="255"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="@+id/GuidelineColumn"
 		app:layout_constraintTop_toBottomOf="@+id/TextViewRed" />
 
@@ -48,6 +47,7 @@
 		android:id="@+id/SeekBarGreen"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:max="255"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="@+id/GuidelineColumn"
 		app:layout_constraintTop_toBottomOf="@+id/TextViewGreen" />
@@ -65,37 +65,55 @@
 		android:id="@+id/SeekBarBlue"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:max="255"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="1.0"
 		app:layout_constraintStart_toStartOf="@+id/GuidelineColumn"
 		app:layout_constraintTop_toBottomOf="@+id/TextViewBlue" />
+
+	<Spinner
+		android:id="@+id/SpinnerHairStyle"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/GuidelineColumn"
+		app:layout_constraintTop_toBottomOf="@+id/SeekBarBlue" />
 
 	<Button
 		android:id="@+id/ButtonRandomize"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:text="@string/randomize"
+		app:layout_constraintBottom_toTopOf="@+id/RadioGroupHES"
 		app:layout_constraintEnd_toStartOf="@+id/GuidelineColumn"
 		app:layout_constraintHorizontal_bias="1.0"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/GuidelineRow" />
+		app:layout_constraintStart_toStartOf="parent" />
 
-	<Spinner
-		android:id="@+id/SpinnerHairStyle"
+	<RadioGroup
+		android:id="@+id/RadioGroupHES"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toStartOf="@+id/GuidelineColumn"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/RadioButtonHES" />
+		app:layout_constraintStart_toStartOf="parent">
 
-	<RadioButton
-		android:id="@+id/RadioButtonHES"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:text="@string/hair_eyes_skin"
-		app:layout_constraintEnd_toStartOf="@+id/GuidelineColumn"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/ButtonRandomize" />
+		<RadioButton
+			android:id="@+id/RadioButtonHair"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/hair" />
+
+		<RadioButton
+			android:id="@+id/RadioButtonEyes"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/eyes" />
+
+		<RadioButton
+			android:id="@+id/RadioButtonSkin"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/skin" />
+	</RadioGroup>
 
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/GuidelineColumn"
@@ -103,12 +121,5 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		app:layout_constraintGuide_percent="0.33" />
-
-	<androidx.constraintlayout.widget.Guideline
-		android:id="@+id/GuidelineRow"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
