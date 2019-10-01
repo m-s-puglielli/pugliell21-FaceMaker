@@ -12,9 +12,14 @@ public class FaceModel
 	private int hair_color;
 	private int eye_color;
 	private int skin_color;
+	private int nose_color;
 	private Paint hair_paint;
 	private Paint eye_paint;
 	private Paint skin_paint;
+	private Paint nose_paint;
+	public static final Paint WHITE_PAINT = new Paint();
+	public static final Paint BLACK_PAINT = new Paint();
+	public static final Paint RED_PAINT = new Paint();
 
 	private Attribute selected_attribute;
 	private Style selected_style;
@@ -27,14 +32,20 @@ public class FaceModel
 		this.hair_color = 0xffffffff;
 		this.eye_color = 0xffffffff;
 		this.skin_color = 0xffffffff;
+		this.nose_color = 0xffffffff;
 
 		this.hair_paint = new Paint();
 		this.eye_paint = new Paint();
 		this.skin_paint = new Paint();
+		this.nose_paint = new Paint();
+		this.WHITE_PAINT.setColor(0xffffffff);
+		this.BLACK_PAINT.setColor(0xff000000);
+		this.RED_PAINT.setColor(0xffff0000);
 
 		this.set_hair_paint(this.hair_color);
 		this.set_eye_paint(this.eye_color);
 		this.set_skin_paint(this.skin_color);
+		this.set_nose_paint(this.nose_color);
 
 		this.selected_attribute = Attribute.HAIR;
 		this.selected_style = Style.MUSTACHE;
@@ -90,6 +101,7 @@ public class FaceModel
 	public Paint get_hair_paint() { return this.hair_paint; }
 	public Paint get_eye_paint() { return this.eye_paint; }
 	public Paint get_skin_paint() { return this.skin_paint; }
+	public Paint get_nose_paint() { return this.nose_paint; }
 	public Attribute get_selected_attribute() { return this.selected_attribute; }
 	public Style get_selected_style() { return this.selected_style; }
 
@@ -114,6 +126,33 @@ public class FaceModel
 
 		this.skin_paint.setColor(this.skin_color);
 	}
+	public void set_nose_paint(int nose_color)
+	{
+		// ensures that all colors' opacity (alpha value) is set to 100%
+		this.nose_color = 0xff000000 | nose_color;
+
+		this.nose_paint.setColor(this.nose_color);
+	}
 	public void set_selected_attribute(Attribute selected_attribute) { this.selected_attribute = selected_attribute; }
 	public void set_selected_style(Style selected_style) { this.selected_style = selected_style; }
+	public void set_selected_style(int selected_style)
+	{
+		switch(selected_style)
+		{
+			case 0:
+				this.selected_style = Style.MUSTACHE;
+				break;
+
+			case 1:
+				this.selected_style = Style.SOUL_PATCH;
+				break;
+
+			case 2:
+				this.selected_style = Style.GOATEE;
+				break;
+
+			default:
+				Log.d("FaceModel.java:136", "ERROR: selected_style OUT OF BOUNDS");
+		}
+	}
 }

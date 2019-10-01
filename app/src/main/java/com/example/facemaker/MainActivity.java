@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 		 * listening interfaces, to the various listening widgets objects.
 		 */
 		FaceController controller = new FaceController(	SurfaceViewFace, SeekBarRed, SeekBarGreen,
-														SeekBarBlue, RadioGroupHES);
+														SeekBarBlue, RadioGroupHES, SpinnerStyles);
 		ButtonRandomize.setOnClickListener(controller);
 		SeekBarRed.setOnSeekBarChangeListener(controller);
 		SeekBarGreen.setOnSeekBarChangeListener(controller);

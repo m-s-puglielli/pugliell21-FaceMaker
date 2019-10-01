@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 
 public class FaceController implements	View.OnClickListener,
 										SeekBar.OnSeekBarChangeListener,
@@ -20,9 +21,11 @@ public class FaceController implements	View.OnClickListener,
 
 	private RadioGroup radio_group;
 
+	private Spinner spinner;
 
 
-	public FaceController(FaceView view, SeekBar red, SeekBar green, SeekBar blue, RadioGroup radio_group)
+
+	public FaceController(FaceView view, SeekBar red, SeekBar green, SeekBar blue, RadioGroup radio_group, Spinner spinner)
 	{
 		this.view = view;
 		model = view.get_face_model();
@@ -32,6 +35,8 @@ public class FaceController implements	View.OnClickListener,
 		this.blue = blue;
 
 		this.radio_group = radio_group;
+
+		this.spinner = spinner;
 
 		this.onClick(view);
 	}
@@ -58,6 +63,10 @@ public class FaceController implements	View.OnClickListener,
 				Log.d("FaceController.java:52", "ERROR: ENUM selected_attribute CORRUPTED");
 				break;
 		}
+
+		int num = view.get_face().gen.nextInt(3);
+		this.spinner.setSelection(num);
+		model.set_selected_style(num);
 
 		view.invalidate();
 	}
