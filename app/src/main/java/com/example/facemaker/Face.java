@@ -64,7 +64,7 @@ public class Face
 				break;
 
 			case GOATEE:
-//				this.draw_goatee(c, center_x, center_y);
+				this.draw_goatee(c, center_x, center_y);
 				break;
 
 			default:
@@ -127,12 +127,18 @@ public class Face
 	private void draw_mustache(Canvas c, float center_x, float center_y)
 	{
 		float new_center_y = center_y * 1.25f;
-		c.drawRect(center_x * 0.85f, new_center_y - (center_y * 0.05f), center_x * 1.15f, new_center_y + (center_y * 0.05f), model.BLACK_PAINT);
+		c.drawRect(center_x * 0.85f, new_center_y - (center_y * 0.05f), center_x * 1.15f, new_center_y + (center_y * 0.05f), model.get_hair_paint());
 	}
 
 	private void draw_soul_patch(Canvas c, float center_x, float center_y)
 	{
 		float new_center_y = center_y * 1.75f;
-		c.drawRect(center_x * 0.85f, new_center_y - (center_y * 0.05f), center_x * 1.15f, new_center_y + (center_y * 0.05f), model.BLACK_PAINT);
+		c.drawRect(center_x * 0.95f, new_center_y - (center_y * 0.05f), center_x * 1.05f, new_center_y + (center_y * 0.05f), model.get_hair_paint());
+	}
+
+	private void draw_goatee(Canvas c, float center_x, float center_y)
+	{
+		this.draw_mustache(c, center_x, center_y);
+		this.draw_soul_patch(c, center_x, center_y);
 	}
 }
