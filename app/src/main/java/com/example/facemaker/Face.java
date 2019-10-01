@@ -73,11 +73,23 @@ public class Face
 		}
 	}
 
+	/**
+	 * This method draws the face.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_face(Canvas c, float center_x, float center_y)
 	{
 		c.drawOval(center_x * 0.7f, center_y * 0.05f, center_x * 1.3f, center_y * 1.95f, model.get_skin_paint());
 	}
 
+	/**
+	 * This method draws the nose.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_nose(Canvas c, float center_x, float center_y)
 	{
 		c.drawOval(center_x * 0.98f, center_y * 0.9f, center_x * 1.02f, center_y * 1.1f, model.get_nose_paint());
@@ -85,6 +97,13 @@ public class Face
 		c.drawOval(center_x * 0.95f, center_y * 0.98f, center_x * 1.05f, center_y * 1.02f, model.get_nose_paint());
 	}
 
+	/**
+	 * This method draws the eyes.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 * @param screen_ratio
+	 */
 	private void draw_eyes(Canvas c, float center_x, float center_y, float screen_ratio)
 	{
 		float new_center_y = center_y * 0.75f;
@@ -116,7 +135,13 @@ public class Face
 				new_center_x + (center_x * circle_radius_multiplyer), new_center_y + (center_y * circle_radius_multiplyer * screen_ratio),
 				model.BLACK_PAINT);
 	}
-	
+
+	/**
+	 * This method draws the mouth.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_mouth(Canvas c, float center_x, float center_y)
 	{
 		float new_center_y = center_y * 1.50f;
@@ -124,18 +149,36 @@ public class Face
 		c.drawLine(center_x * 0.85f, new_center_y, center_x * 1.15f, new_center_y, model.BLACK_PAINT);
 	}
 
+	/**
+	 * This method draws the mustache, if selected.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_mustache(Canvas c, float center_x, float center_y)
 	{
 		float new_center_y = center_y * 1.25f;
 		c.drawRect(center_x * 0.85f, new_center_y - (center_y * 0.05f), center_x * 1.15f, new_center_y + (center_y * 0.05f), model.get_hair_paint());
 	}
 
+	/**
+	 * This method draws the soul patch, if selected.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_soul_patch(Canvas c, float center_x, float center_y)
 	{
 		float new_center_y = center_y * 1.75f;
 		c.drawRect(center_x * 0.95f, new_center_y - (center_y * 0.05f), center_x * 1.05f, new_center_y + (center_y * 0.05f), model.get_hair_paint());
 	}
 
+	/**
+	 * This method draws the goatee, if selected.
+	 * @param c
+	 * @param center_x
+	 * @param center_y
+	 */
 	private void draw_goatee(Canvas c, float center_x, float center_y)
 	{
 		this.draw_mustache(c, center_x, center_y);

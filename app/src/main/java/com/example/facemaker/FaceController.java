@@ -24,7 +24,15 @@ public class FaceController implements	View.OnClickListener,
 	private Spinner spinner;
 
 
-
+	/**
+	 * This method is FaceController's constructor.
+	 * @param view
+	 * @param red
+	 * @param green
+	 * @param blue
+	 * @param radio_group
+	 * @param spinner
+	 */
 	public FaceController(FaceView view, SeekBar red, SeekBar green, SeekBar blue, RadioGroup radio_group, Spinner spinner)
 	{
 		this.view = view;
@@ -41,6 +49,11 @@ public class FaceController implements	View.OnClickListener,
 		this.onClick(view);
 	}
 
+	/**********************************************************************************************
+	 * This block of code is associated with the View.OnClickListener interface, which connects
+	 * FaceController to the Random Face button.
+	 * @param v
+	 */
 	public void onClick(View v)
 	{
 		view.get_face().randomize();
@@ -70,7 +83,15 @@ public class FaceController implements	View.OnClickListener,
 
 		view.invalidate();
 	}
+	/*********************************************************************************************/
 
+	/**********************************************************************************************
+	 * The following block of code is associated with the SeekBar.OnSeekBarChangeListener interface,
+	 * which connects FaceController to the various Red, Green, & Blue SeekBars.
+	 * @param sb
+	 * @param progress
+	 * @param fromUser
+	 */
 	public void onProgressChanged(SeekBar sb, int progress, boolean fromUser)
 	{
 		if(fromUser)
@@ -95,7 +116,14 @@ public class FaceController implements	View.OnClickListener,
 	}
 	public void onStartTrackingTouch(SeekBar sb) {}
 	public void onStopTrackingTouch(SeekBar sb) {}
+	/*********************************************************************************************/
 
+	/**********************************************************************************************
+	 * The following block of code is associated with the RadioGroup.OnCheckedChangeListener
+	 * interface, which connects FaceController to the various Hair, Eyes, & Skin RadioButtons.
+	 * @param group
+	 * @param checkedId
+	 */
 	public void onCheckedChanged(RadioGroup group, int checkedId)
 	{
 		switch(checkedId)
@@ -126,7 +154,16 @@ public class FaceController implements	View.OnClickListener,
 				break;
 		}
 	}
+	/*********************************************************************************************/
 
+	/**********************************************************************************************
+	 * The following block of code is associated with the AdapterView.OnItemSelectedListener
+	 * interface, which connects FaceController to the Style Spinner.
+	 * @param parent
+	 * @param view
+	 * @param position
+	 * @param id
+	 */
 	public void onItemSelected(AdapterView parent, View view, int position, long id)
 	{
 		switch(position)
@@ -149,4 +186,5 @@ public class FaceController implements	View.OnClickListener,
 		this.view.invalidate();
 	}
 	public void onNothingSelected(AdapterView parent) {}
+	/**********************************************************************************************/
 }
